@@ -13,12 +13,12 @@ public class HelloServlet extends HttpServlet {
             throws ServletException, IOException {
         // 入力値を取得
         String name = request.getParameter("username");
-
-        // レスポンスを作成
-        response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>こんにちは、" + name + "さん！</h1>");
-        out.println("</body></html>");
+        
+        // リクエストにデータをセット（JSPに渡す）
+        request.setAttribute("username",name);
+        
+        //result.jspにフォワード
+        RequestDispatcher dispatcher= request.getRequestDispatcher("/result.jsp");
+        dispatcher.forward(request,response);
     }
 }
